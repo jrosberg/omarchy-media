@@ -1,0 +1,11 @@
+{
+  "settings.tooltip": "Settings",
+  "settings.scrollSpeed": "Scrolling speed",
+  "settings.scrollSpeedValue": "%1 px/s",
+  "settings.titleWidth": "Title width",
+  "settings.titleWidthValue": "%1 px",
+  "settings.scrollOnce": "Scroll title only once",
+  "settings.scrollOnceDescription": "Scroll each track's title one time, then keep it still",
+  "settings.stripTopic": "Hide \"- Topic\" in artist names",
+  "settings.stripTopicDescription": "YouTube adds it to auto-generated artist channels"
+}
