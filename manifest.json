@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "io.github.jrosberg.media",
   "name": "Calm Media",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Janne Rosberg",
   "license": "MIT",
   "description": "Now-playing bar widget with playback controls and a scrolling title you can tune: speed, width, and scroll-once.",
@@ -25,7 +25,8 @@
       "scrollSpeed": 40,
       "labelWidth": 180,
       "scrollOnce": false,
-      "stripTopic": true
+      "stripTopic": true,
+      "remoteArt": false
     },
     "schema": [
       {
@@ -57,6 +58,12 @@
         "type": "boolean",
         "label": "Hide \"- Topic\" in artist names",
         "defaultValue": true
+      },
+      {
+        "key": "remoteArt",
+        "type": "boolean",
+        "label": "Load cover art from the internet (https only)",
+        "defaultValue": false
       }
     ]
   },

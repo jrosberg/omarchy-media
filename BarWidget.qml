@@ -43,6 +43,20 @@ BarWidget {
   readonly property bool scrollOnce: setting("scrollOnce", false) === true
   readonly property bool stripTopic: setting("stripTopic", true) !== false
 
+  readonly property bool remoteArt: setting("remoteArt", false) === true
+
+  // The player chooses the artwork URL, so loading it lets the player make
+  // the shell contact a host of its choosing. Local files are always shown;
+  // an https URL is only fetched once the user has opted in, and anything
+  // else (plain http, other schemes) is never loaded.
+  function safeArtUrl(url) {
+    var text = String(url || "")
+    if (text.indexOf("file:///") === 0) return text
+    if (remoteArt && text.indexOf("https://") === 0) return text
+    return ""
+  }
+  readonly property string artUrl: activePlayer ? safeArtUrl(activePlayer.trackArtUrl) : ""
+
   // YouTube's auto-generated artist channels are named "<artist> - Topic",
   // and the browser reports the channel name as the track's artist.
   function cleanArtist(name) {
@@ -222,13 +236,13 @@ BarWidget {
             anchors.fill: parent
             anchors.margins: Style.space(2)
             crop: true
-            url: root.activePlayer && root.activePlayer.trackArtUrl ? root.activePlayer.trackArtUrl : ""
+            url: root.artUrl
             visible: url != ""
           }
 
           Text {
             anchors.centerIn: parent
-            visible: !root.activePlayer || !root.activePlayer.trackArtUrl
+            visible: root.artUrl === ""
             text: "󰝚"
             color: root.bar.foreground
             font.family: root.bar.fontFamily
@@ -531,6 +545,17 @@ BarWidget {
           fontFamily: root.bar.fontFamily
           titleSize: Style.font.bodySmall
           onClicked: root.updateSettings({ stripTopic: !root.stripTopic }, true)
+        }
+
+        Toggle {
+          width: parent.width
+          label: strings.t("settings.remoteArt")
+          description: strings.t("settings.remoteArtDescription")
+          checked: root.remoteArt
+          foreground: root.bar.foreground
+          fontFamily: root.bar.fontFamily
+          titleSize: Style.font.bodySmall
+          onClicked: root.updateSettings({ remoteArt: !root.remoteArt }, true)
         }
       }
     }

@@ -7,5 +7,7 @@
   "settings.scrollOnce": "Scroll title only once",
   "settings.scrollOnceDescription": "Scroll each track's title one time, then keep it still",
   "settings.stripTopic": "Hide \"- Topic\" in artist names",
-  "settings.stripTopicDescription": "YouTube adds it to auto-generated artist channels"
+  "settings.stripTopicDescription": "YouTube adds it to auto-generated artist channels",
+  "settings.remoteArt": "Load cover art from the internet",
+  "settings.remoteArtDescription": "Off: only covers the player saved on this computer are shown"
 }

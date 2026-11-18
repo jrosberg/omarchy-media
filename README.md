@@ -22,6 +22,8 @@ unless you set the scroll speed very high. :-)
   - **Scroll title only once** — one pass per track, then the title stays still.
   - **Hide "- Topic" in artist names** — YouTube's auto-generated artist
     channels report the artist as "Artist - Topic"; on by default.
+  - **Load cover art from the internet** — off by default; see
+    [Cover art and network access](#cover-art-and-network-access).
 
 ## Controls
 
@@ -59,9 +61,22 @@ and can be edited there too:
   "scrollSpeed": 40,
   "labelWidth": 180,
   "scrollOnce": false,
-  "stripTopic": true
+  "stripTopic": true,
+  "remoteArt": false
 }
 ```
+
+## Cover art and network access
+
+The cover art address comes from the media player, so loading it would let a
+player make the shell contact any host it names. By default the plugin
+therefore only shows covers the player has saved as local files (`file://`),
+which is what browsers such as Chrome do, and makes no network requests.
+
+Players that only give a web address for the cover (Spotify, for example) show
+a placeholder until you turn on **Load cover art from the internet**. With it
+on, `https://` addresses are fetched; plain `http://` and other schemes are
+never loaded.
 
 ## Uninstall
 
